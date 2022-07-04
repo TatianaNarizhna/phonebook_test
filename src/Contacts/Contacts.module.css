@@ -1,0 +1,21 @@
+.contacts {
+  width: 600px;
+  height: 100%;
+  margin-left: 30px;
+}
+
+.button {
+  margin-left: 20px;
+}
+
+.list {
+  padding: 20px;
+  outline: 1px solid blueviolet;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
