@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import "modern-normalize/modern-normalize.css";
 import { nanoid } from "nanoid";
-import Input from "./Input/Input";
-import Contacts from "./Contacts/Contacts";
-import Filter from "./Filter/Filter";
+// import Input from "./Input/Input";
+// import Contacts from "./Contacts/Contacts";
+// import Filter from "./Filter/Filter";
+import AppImg from "./SearchImg/AppImg";
 
 class App extends Component {
   state = {
     contacts: [],
     filter: "",
   };
+
+  componentDidMount() {
+    const storage = localStorage.getItem("contacts");
+    const parsed = JSON.parse(storage);
+
+    if (parsed) {
+      this.setState({ contacts: parsed });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
 
   addContact = ({ name, number }) => {
     const stateContacts = this.state.contacts;
@@ -56,9 +72,10 @@ class App extends Component {
 
     return (
       <>
-        <Input onSubmit={this.addContact} />
+        <AppImg />
+        {/* <Input onSubmit={this.addContact} />
         <Filter filter={filter} onChange={this.onChangeFilter} />
-        <Contacts contacts={contacts} onDeleteContact={this.deleteContact} />
+        <Contacts contacts={contacts} onDeleteContact={this.deleteContact} /> */}
       </>
     );
   }
