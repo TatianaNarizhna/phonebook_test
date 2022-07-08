@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "modern-normalize/modern-normalize.css";
 import { nanoid } from "nanoid";
-// import Input from "./Input/Input";
-// import Contacts from "./Contacts/Contacts";
-// import Filter from "./Filter/Filter";
-import AppImg from "./SearchImg/AppImg";
+import Input from "./Input/Input";
+import Contacts from "./Contacts/Contacts";
+import Filter from "./Filter/Filter";
 
 class App extends Component {
   state = {
@@ -72,10 +71,9 @@ class App extends Component {
 
     return (
       <>
-        <AppImg />
-        {/* <Input onSubmit={this.addContact} />
+        <Input onSubmit={this.addContact} />
         <Filter filter={filter} onChange={this.onChangeFilter} />
-        <Contacts contacts={contacts} onDeleteContact={this.deleteContact} /> */}
+        <Contacts contacts={contacts} onDeleteContact={this.deleteContact} />
       </>
     );
   }
