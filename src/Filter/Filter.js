@@ -1,6 +1,15 @@
+import { useSelector, useDispatch } from "react-redux";
+import contactsActions from "../redux/actions";
+import { getFilter } from "../redux/selectors";
 import s from "./Filter.module.css";
 
-function Filter({ filter, onChange }) {
+function Filter() {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onChangeFilter = (e) =>
+    dispatch(contactsActions.filter(e.target.value));
+
   return (
     <div className={s.label}>
       <label>
@@ -9,7 +18,7 @@ function Filter({ filter, onChange }) {
           className={s.filter}
           type="text"
           value={filter}
-          onChange={onChange}
+          onChange={onChangeFilter}
         />
       </label>
     </div>

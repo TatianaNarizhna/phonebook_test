@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import contactsActions from "../redux/actions";
+import { getContacts } from "../redux/selectors";
 import s from "./Input.module.css";
 
-function Input({ onSubmit }) {
+function Input() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     switch (e.target.name) {
@@ -22,8 +28,14 @@ function Input({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, number });
 
+    const added = contacts.some((contact) => contact.name === name);
+    if (added) {
+      reset();
+      return alert(`${name} is already in Contacts`);
+    }
+
+    dispatch(contactsActions.addContact({ name, number }));
     reset();
   };
 
